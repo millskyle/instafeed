@@ -1,15 +1,17 @@
 import json
 import sys
 import bottle
+from multiprocessing import Process
 from database import dbHandler
 from bottle import request
 sys.path.append('./insta/')
 import imagecollector
 
+imageCollector = imagecollector.ImageCollector()
 setup = False #True 
 #setup = True
 dbHandler.init()
-imageCollector = imagecollector.ImageCollector()
+#imageCollector.start()
 #if setup:
 #   scraperWorker.start()
 
@@ -26,19 +28,43 @@ def _close_db():
 def index():
     return bottle.static_file('input.html', root='./')
 
+@bottle.route('/get_photos.json')
+def get_photos():
+
+   data = dbHandler.getPics(10)
+   templ = open('template/get_photos.json', 'r').read()
+   return bottle.template(templ, data=data)
+
 
 @bottle.route('/slideshow', method="POST")
 def getCalendar():
    #Now begin the process of querying the db
+   global imageCollector
    semester = request.forms.get("hashtag")
    dbHandler.init(True) #Clear the database
-   imageCollector.set_hashtag("whydevtest")
-   imageCollector.runProcess()
 
+   if imageCollector.is_alive():
+      imageCollector.end()
+      imageCollector = imagecollector.ImageCollector()
+      imageCollector.set_hashtag("whydevtest")
+
+   imageCollector.start()
+#   p = Process(target=imageCollector.run())
+#   p.start()
+
+   urls = open("images.txt","r").read().replace('\n','').split(',')
    templ = open('template/slideshow.tmpl','r').read()
 
-   return bottle.template(templ, out="DONE")
+#   return bottle.template(templ, urls=urls)
+   return bottle.static_file('slideshow.tmpl',root='template/')
 
+@bottle.route('/smooth_slider.css')
+def smooth_slider():
+   return bottle.static_file('smooth_slider.css',root='css/')
+
+@bottle.route('/jquery-slider.js')
+def jquery_slider():
+   return bottle.static_file('jquery-slider.js', root='js/')
 
 old="""
 
