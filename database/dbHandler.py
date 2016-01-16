@@ -3,6 +3,7 @@ from dbSetup import *
 import urllib2
 from urllib import urlencode
 from datetime import datetime, timedelta
+import random
 
 #initializes the database
 #Use reinit for debugging purposes
@@ -17,6 +18,31 @@ def __deleteTables():
 
 def __createTables():
    images.create_table(True)
+
+
+def getPics(count=10):
+   query = images.select().where(images.hide==0)
+   rows = images()
+   if query.exists():
+      rows = query.get()
+
+   data = []
+
+
+   for row in images.select().where(images.hide==0) : #random.shuffle(rows)[0:count]:
+      data.append(
+        [
+          row.stdres_url,
+          row.stdres_height,
+          row.stdres_width,
+          row.user_username,
+          row.user_profile_picture,
+          row.likes,
+          row.caption_text
+          ]
+      )
+   return data
+
 
 
 def updatePic(pic):
