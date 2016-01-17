@@ -18,6 +18,7 @@
 
    <div class="card" ng-repeat="image in images" >
       <img width='200px' ng-src='{{ image.url }}' />
+      {{ image.uername }}
    </div>
 
 </div>
@@ -45,13 +46,9 @@ app.controller('MainController', ['$scope', 'getimages', function($scope, getima
 
 //services
 app.factory('getimages', ['$http', function($http) { 
-  return $http.get('./get_photos.json') 
-            .success(function(data) { 
-              return data; 
-            }) 
-            .error(function(err) { 
-              return err; 
-            }); 
+  return $http.get('./get_photos.json')
+            .success(function(data) { return data; }) 
+            .error(function(err) { return err;  }); 
 }]);
 
 
