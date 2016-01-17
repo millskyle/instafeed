@@ -4,7 +4,7 @@
             "url": "{{post[0]}}",
             "height": {{post[1]}},
             "width":{{post[2]}},
-            "username":{{post[3]}}",
+            "username":"{{post[3]}}",
             "profile_pic":"{{post[4]}}",
             "likes":{{post[5]}},
             "caption":"{{post[6]}}"

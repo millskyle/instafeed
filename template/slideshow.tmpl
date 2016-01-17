@@ -36,19 +36,43 @@
 //app
 var app = angular.module('SlideshowApp', []);
 
-//controllers
-app.controller('MainController', ['$scope', 'getimages', function($scope, getimages) { 
-     getimages.success(function(data) {
-            $scope.images=data;
-              });
-       // ... 
-}]);
 
-//services
-app.factory('getimages', ['$http', function($http) { 
-  return $http.get('./get_photos.json')
-            .success(function(data) { return data; }) 
-            .error(function(err) { return err;  }); 
+////services
+//app.factory('getimages', ['$http', function($http) { 
+//   return $http.get('./get_photos.json')
+//            .success(function(data) { console.log('data'); return data; }) 
+//            .error(function(err) { console.log('error');return err;  }); 
+//}]);
+
+
+
+//controllers
+app.controller('MainController', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) { 
+  //   getimages.success(function(data) {
+ //            $scope.images=data;
+   //           console.log('first fire');
+   //  });
+
+  $scope.getData = function () {
+      $http.get('./get_photos.json')
+           .success(function(data) { console.log('fetched'); $scope.images = data; });
+   };
+
+  // Function to replicate setInterval using $timeout service.
+  $scope.intervalFunction = function(){
+    $timeout(function() {
+      $scope.getData();
+//getimages.success(function(data) { $scope.images=data;   });
+      $scope.intervalFunction();
+      console.log('fired');
+    }, 5000)
+  };
+
+  // Kick off the interval
+  $scope.intervalFunction();
+
+
+       // ... 
 }]);
 
 
