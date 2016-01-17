@@ -9,7 +9,7 @@ class ImageCollector(threading.Thread):
    def __init__(self):
       super(ImageCollector, self).__init__()
       self.exit = False
-      self.interval_time = 100 #every 20 minutes
+      self.interval_time = 10000 
       self.callbackInt = [0]
       self.hashtag = "whydevtest"
 

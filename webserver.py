@@ -30,10 +30,22 @@ def index():
 
 @bottle.route('/get_photos.json')
 def get_photos():
+   global imageCollector
+   if imageCollector.is_alive():
+         imageCollector.end()
+         imageCollector = imagecollector.ImageCollector()
+         imageCollector.set_hashtag("whydevtest")
+
+   imageCollector.start()
 
    data = dbHandler.getPics(10)
    templ = open('template/get_photos.json', 'r').read()
    return bottle.template(templ, data=data)
+
+@bottle.route('/get_photos_static.json')
+def get_photos_static():
+   return bottle.static_file('get_photos_static.json', root='template/')
+
 
 
 @bottle.route('/slideshow', method="POST")
@@ -43,13 +55,7 @@ def getCalendar():
    semester = request.forms.get("hashtag")
    dbHandler.init(True) #Clear the database
 
-   if imageCollector.is_alive():
-      imageCollector.end()
-      imageCollector = imagecollector.ImageCollector()
-      imageCollector.set_hashtag("whydevtest")
-
-   imageCollector.start()
-#   p = Process(target=imageCollector.run())
+   #   p = Process(target=imageCollector.run())
 #   p.start()
 
    urls = open("images.txt","r").read().replace('\n','').split(',')
