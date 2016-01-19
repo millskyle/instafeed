@@ -64,13 +64,17 @@ def getCalendar():
 #   return bottle.template(templ, urls=urls)
    return bottle.static_file('slideshow.tmpl',root='template/')
 
-@bottle.route('/smooth_slider.css')
-def smooth_slider():
-   return bottle.static_file('smooth_slider.css',root='css/')
+@bottle.route('/slideshow.css')
+def slideshowcss():
+   return bottle.static_file('slideshow.css',root='css/')
 
 @bottle.route('/jquery-slider.js')
 def jquery_slider():
    return bottle.static_file('jquery-slider.js', root='js/')
+
+@bottle.route('/heart.svg')
+def heart():
+   return bottle.static_file('heart.svg', root='img/')
 
 old="""
 
