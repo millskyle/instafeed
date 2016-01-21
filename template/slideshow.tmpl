@@ -21,18 +21,21 @@
 
 <div class="main" ng-controller="MainController" >
 
- <div class="cardholder" > 
-   <div class="card fade"  ng-repeat="image in images" ng-if="isCurrentSlideIndex($index)" >
+ <div class="cardholder" ng-repeat="image in images"> 
+   <div class="card fade thickborder"  ng-if="isCurrentSlideIndex($index)"  >
       <div class="column1">
-         <img class='slide_image ' ng-src='{{ image.url }}' />
+        <div class="photo_container" >
+             <img  class="slide_image" ng-src="{{image.url}}" >
+        </div>
       </div>
       <div class="column2" >
          <div class='user'>
            <div class="profile-pic-container"><img ng-src="{{ image.profile_pic }} " class='profile-pic' /></div>
            <div class='username' > {{image.username}} </div>
          </div>
-         <div class='likes' > <div class="heart"> {{image.likes}} </div></div>
+         <div class='likes transparent blur' > <div class="heart" ng-if="image.likes > -1" > {{image.likes}} </div></div>
          <div class='caption' > {{image.caption}} </div>
+         <div class='tag-info'><span class='overlock transparent'>Tag your <span class='lobster'>Instagram</span> photos with </span><span class='hashtag'>#{{image.watchtag}}</span> </div>
       </div >
    </div>
 
@@ -101,7 +104,7 @@ app.controller('MainController', ['$scope', '$timeout', '$http', function($scope
 
 
   $scope.getData = function () {
-      $http.get('./get_photos_static.json')
+      $http.get('./get_photos.json')
            .success(function(data) { console.log('fetched'); $scope.images = data; });
    };
 

@@ -1,40 +1,56 @@
 .BODY {
-background: url('http://files.customize.org/download/wallpapers/88552/98004/Dark_Gradient_Wallpaper-1920x1200.jpg');
-
-}
-
-.column2 {
-   padding-top:150px; 
-   float: left; 
-   width:40%; 
+   background: url('http://files.customize.org/download/wallpapers/88552/98004/Dark_Gradient_Wallpaper-1920x1200.jpg');
+   overflow:hidden;
 }
 
 .column1 { 
+   position: relative;
    float: left; 
-   width:60%;
+   width:350px;
+}
+
+.column2 {
+   position: relative;
+   float: left; 
+   width:350px; 
 }
 
 .cardholder{
-   width: 70%;
-   height:67%;
 }
+
+
 
 .card {
   background: url('http://www.smartphonewallpaperhd.com/files/wallpapers-1001/HTC%20Light%20Gradient%20Background%203136.jpg');
   position:absolute;
-  top:10%;
-  left:5%;   
-  border: 10px solid black;
-  border-radius:60px;
-  padding: 1%; 
+
+  width:700px;
+  height:350px;
+
+
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+
+  margin:auto;
+
+  padding: 5px;
+  border-radius:30px;
+}
+
+.thickborder {
+   border: 5px solid black;
 }
 
 .user { 
+   margin-top:50px;
+   margin-right
    height: 120px;
 }
 
 .profile-pic {
-   height:1%;
+   height:75px;
    -webkit-clip-path: circle(50% at 50% 50%);
    clip-path: circle(50% at 50% 50%);
 }
@@ -43,12 +59,15 @@ background: url('http://files.customize.org/download/wallpapers/88552/98004/Dark
    float:left;
 
 }
-
-.username {
-   padding-left:60px;
+.lobster {
    font-family: 'Lobster Two', cursive;
-   font-size: 36pt;
 
+  }
+.username {
+   padding-top:10px;
+   padding-left:90px;
+   font-family: 'Lobster Two', cursive;
+   font-size: 30pt;
 }
 
 .center {
@@ -57,9 +76,10 @@ background: url('http://files.customize.org/download/wallpapers/88552/98004/Dark
 }
 
 .caption {
-   padding-top:80px;
+   text-align:center;
+   margin-top:70px;
    font-family: 'Overlock', cursive;
-   font-size:26pt;
+   font-size:20pt;
 }
 
 .likes {
@@ -73,21 +93,55 @@ background: url('http://files.customize.org/download/wallpapers/88552/98004/Dark
 
 .heart {
   float:left;
+  margin-top:-15px;
   padding-left:56px;
   background-image: url(./heart.svg);
   background-repeat: no-repeat;
-  background-position: 0px 9px;
+  background-position: 0px 13px;
   background-size: 50px 50px;
 
   width:50px;
   height:100px;
 }
 
+.overlock {
+   font-family:  'Overlock', cursive;
+   font-weight:100;
+}
+
+.tag-info {
+   margin-top:120px;
+}
+.hashtag {
+   font-family: 'Overlock', cursive;
+   font-weight:700;
+}
+
+.transparent {
+   opacity:0.3;
+}
+
+.blur{
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+}
+
+
 .slide_image {
-   border-radius: 40px;
+   margin:10px;
+   width:330px;
+   height:330px;
+   border-radius: 20px;
 
 }
 
+.photo_container {
+   width:100%;
+   height:100%;
+}
 
 /* now the element will fade out before it is removed from the DOM */
 .fade.ng-leave {
@@ -108,6 +162,5 @@ background: url('http://files.customize.org/download/wallpapers/88552/98004/Dark
 .fade.ng-enter.ng-enter-active {
      opacity:1;
 }
-
 
 

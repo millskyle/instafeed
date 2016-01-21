@@ -40,7 +40,7 @@ def get_photos():
 
    data = dbHandler.getPics(10)
    templ = open('template/get_photos.json', 'r').read()
-   return bottle.template(templ, data=data)
+   return bottle.template(templ, data=data, watch_tag='whydevtest')
 
 @bottle.route('/get_photos_static.json')
 def get_photos_static():
