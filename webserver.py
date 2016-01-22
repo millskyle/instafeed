@@ -8,6 +8,7 @@ sys.path.append('./insta/')
 import imagecollector
 
 imageCollector = imagecollector.ImageCollector()
+hashtag = ""
 setup = False #True 
 #setup = True
 dbHandler.init()
@@ -31,16 +32,17 @@ def index():
 @bottle.route('/get_photos.json')
 def get_photos():
    global imageCollector
+   global hashtag
    if imageCollector.is_alive():
          imageCollector.end()
          imageCollector = imagecollector.ImageCollector()
-#         imageCollector.set_hashtag("whydevtest")
+         imageCollector.set_hashtag(hashtag)
 
    imageCollector.start()
 
    data = dbHandler.getPics(10)
    templ = open('template/get_photos.json', 'r').read()
-   return bottle.template(templ, data=data, watch_tag='whydevtest')
+   return bottle.template(templ, data=data, watch_tag=hashtag)
 
 @bottle.route('/get_photos_static.json')
 def get_photos_static():
@@ -52,9 +54,11 @@ def get_photos_static():
 def getCalendar():
    #Now begin the process of querying the db
    global imageCollector
-   active_hashtag = request.forms.get("hashtag")
+   global hashtag
+   hashtag = request.forms.get("hashtag")
    dbHandler.init(True) #Clear the database
-   imageCollector.set_hashtag(active_hashtag)
+   imageCollector.hashtag = hashtag
+   print imageCollector.hashtag,"!!!!"
 
 #   return bottle.template(templ, urls=urls)
    return bottle.static_file('slideshow.tmpl',root='template/')

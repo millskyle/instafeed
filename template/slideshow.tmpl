@@ -22,7 +22,7 @@
 <div class="main" ng-controller="MainController" >
 
  <div class="cardholder" ng-repeat="image in images"> 
-   <div class="card fade thickborder"  ng-if="isCurrentSlideIndex($index)" style="
+   <div class="card thickborder fade"  ng-if="isCurrentSlideIndex($index)" style="
    
    background: -moz-radial-gradient(center, ellipse cover, #{{image.color1}} 0%, {{image.colour2}} 76%, {{image.colour2}} 97%); /* ff3.6+ */
    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, {{image.colour1}}), color-stop(76%, {{image.colour2}}), color-stop(97%, {{image.colour2}})); /* safari4+,chrome */
@@ -34,7 +34,7 @@
    
    
    ">
-   <div class='tag-info'><span class='overlock transparent'>Tag your <span class='lobster'>Instagram</span> photos with </span><span class='hashtag'>#{{image.watchtag}}</span> </div>
+   <div class='tag-info'><span class='overlock transparent'>Tag your <span class='lobster'>Instagram</span> photos with </span><span class='hashtag'>{{image.watchtag}}</span> </div>
       <div class="column1">
         <div class="photo_container" >
              <img  class="slide_image" ng-src="{{image.url}}" >
