@@ -16,6 +16,7 @@
 }
 
 .cardholder{
+   
 }
 
 
@@ -45,7 +46,7 @@
 
 .user { 
    margin-top:50px;
-   margin-right
+   margin-right:60px;
    height: 120px;
 }
 
@@ -89,6 +90,7 @@
    font-family: 'Lobster Two', cursive;
    font-size: 46pt;
    color: #f12938;
+   color: #FFFFFF;
 }
 
 .heart {
@@ -110,7 +112,12 @@
 }
 
 .tag-info {
-   margin-top:120px;
+   position: absolute;
+   top:375px;
+   font-size:25pt;
+   width:700px;
+   text-align:center;
+   margin:auto;
 }
 .hashtag {
    font-family: 'Overlock', cursive;
@@ -131,9 +138,10 @@
 
 
 .slide_image {
-   margin:10px;
+   margin:7px;
    width:330px;
    height:330px;
+   border: 5px solid white;
    border-radius: 20px;
 
 }
@@ -161,6 +169,19 @@
 /* The finishing CSS styles for the enter animation */
 .fade.ng-enter.ng-enter-active {
      opacity:1;
+}
+
+
+
+.bkgnd_gradient {
+  background: -moz-radial-gradient(center, ellipse cover, #6B6B6B 0%, #171717 76%, #000000 97%); /* ff3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #6B6B6B), color-stop(76%, #171717), color-stop(97%, #000000)); /* safari4+,chrome */
+  background: -webkit-radial-gradient(center, ellipse cover, #6B6B6B 0%, #171717 76%, #000000 97%); /* safari5.1+,chrome10+ */
+  background: -o-radial-gradient(center, ellipse cover, #6B6B6B 0%, #171717 76%, #000000 97%); /* opera 11.10+ */
+  background: -ms-radial-gradient(center, ellipse cover, #6B6B6B 0%, #171717 76%, #000000 97%); /* ie10+ */
+  background: radial-gradient(ellipse at center, #6B6B6B 0%, #171717 76%, #000000 97%); /* w3c */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6B6B6B', endColorstr='#000000',GradientType=1 ); /* ie6-9 */
+  background-size:1920px 1080px;
 }
 
 

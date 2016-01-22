@@ -16,13 +16,25 @@
 
 
 </head>
-<body ng-app="SlideshowApp" class='BODY'>
+<body ng-app="SlideshowApp" class='BODY bkgnd_gradient'>
 
 
 <div class="main" ng-controller="MainController" >
 
  <div class="cardholder" ng-repeat="image in images"> 
-   <div class="card fade thickborder"  ng-if="isCurrentSlideIndex($index)"  >
+   <div class="card fade thickborder"  ng-if="isCurrentSlideIndex($index)" style="
+   
+   background: -moz-radial-gradient(center, ellipse cover, #{{image.color1}} 0%, {{image.colour2}} 76%, {{image.colour2}} 97%); /* ff3.6+ */
+   background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, {{image.colour1}}), color-stop(76%, {{image.colour2}}), color-stop(97%, {{image.colour2}})); /* safari4+,chrome */
+   background: -webkit-radial-gradient(center, ellipse cover, {{image.colour1}} 0%, {{image.colour2}} 76%, {{image.colour2}} 97%); /* safari5.1+,chrome10+ */
+   background: -o-radial-gradient(center, ellipse cover, {{image.colour1}} 0%, {{image.colour2}} 76%, {{image.colour2}} 97%); /* opera 11.10+ */
+   background: -ms-radial-gradient(center, ellipse cover, {{image.colour1}} 0%, {{image.colour2}} 76%, {{image.colour2}} 97%); /* ie10+ */
+   background: radial-gradient(ellipse at center, {{image.colour1}} 0%, {{image.colour2}} 76%, {{image.colour2}} 97%); /* w3c */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='{{image.colour1}}', endColorstr='{{image.colour2}}',GradientType=1 ); /* ie6-9 */
+   
+   
+   ">
+   <div class='tag-info'><span class='overlock transparent'>Tag your <span class='lobster'>Instagram</span> photos with </span><span class='hashtag'>#{{image.watchtag}}</span> </div>
       <div class="column1">
         <div class="photo_container" >
              <img  class="slide_image" ng-src="{{image.url}}" >
@@ -33,9 +45,8 @@
            <div class="profile-pic-container"><img ng-src="{{ image.profile_pic }} " class='profile-pic' /></div>
            <div class='username' > {{image.username}} </div>
          </div>
-         <div class='likes transparent blur' > <div class="heart" ng-if="image.likes > -1" > {{image.likes}} </div></div>
+   <!--      <div class='likes transparent blur' > <div class="heart" ng-if="image.likes > -1" > {{image.likes}} </div></div> -->
          <div class='caption' > {{image.caption}} </div>
-         <div class='tag-info'><span class='overlock transparent'>Tag your <span class='lobster'>Instagram</span> photos with </span><span class='hashtag'>#{{image.watchtag}}</span> </div>
       </div >
    </div>
 
@@ -115,7 +126,7 @@ app.controller('MainController', ['$scope', '$timeout', '$http', function($scope
 //getimages.success(function(data) { $scope.images=data;   });
       $scope.intervalFunction();
       console.log('fired');
-    }, 2000) //time between fetching new images from server/instagram (in milliseconds)
+    }, 5000) //time between fetching new images from server/instagram (in milliseconds)
   };
 
   // Kick off the interval
