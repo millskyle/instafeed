@@ -61,9 +61,9 @@ class InstagramAPI:
    def __init__(self):
       self.api = Instagram(access_token=access_token, client_secret=client_secret, client_id=client_id) 
 
-   def poll(self,query="whydevtest"):
+   def poll(self,query="AAA"):
       print "Running query..."
-      self.api.tag_query(query)
+      self.api.tag_query(query.replace("#",""))
 
       for d in self.api.data['data']:
          print "Found image"

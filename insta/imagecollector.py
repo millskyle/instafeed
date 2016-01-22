@@ -11,7 +11,7 @@ class ImageCollector(threading.Thread):
       self.exit = False
       self.interval_time = 10000 
       self.callbackInt = [0]
-      self.hashtag = "whydevtest"
+      self.hashtag = "BBB"
 
    def set_hashtag(self,hashtag):
       self.hashtag = hashtag
@@ -39,6 +39,7 @@ class ImageCollector(threading.Thread):
 
    def runProcess(self):
       api = poll_instagram.InstagramAPI()
+      print "Polling instagram for hashtag {0}".format(self.hashtag)
       api.poll(self.hashtag)
       #reactor.run()
 
