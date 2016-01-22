@@ -34,7 +34,7 @@ def get_photos():
    if imageCollector.is_alive():
          imageCollector.end()
          imageCollector = imagecollector.ImageCollector()
-         imageCollector.set_hashtag("whydevtest")
+#         imageCollector.set_hashtag("whydevtest")
 
    imageCollector.start()
 
@@ -52,14 +52,9 @@ def get_photos_static():
 def getCalendar():
    #Now begin the process of querying the db
    global imageCollector
-   semester = request.forms.get("hashtag")
+   active_hashtag = request.forms.get("hashtag")
    dbHandler.init(True) #Clear the database
-
-   #   p = Process(target=imageCollector.run())
-#   p.start()
-
-   urls = open("images.txt","r").read().replace('\n','').split(',')
-   templ = open('template/slideshow.tmpl','r').read()
+   imageCollector.set_hashtag(active_hashtag)
 
 #   return bottle.template(templ, urls=urls)
    return bottle.static_file('slideshow.tmpl',root='template/')
