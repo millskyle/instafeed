@@ -8,7 +8,10 @@
             "profile_pic":"{{post[4]}}",
             "likes":{{post[5]}},
             "caption":"{{post[6]}}",
-            "watchtag":"{{watch_tag}}"
+            "watchtag":"{{watch_tag}}",
+            "colour1":"{{post[7]}}",
+            "colour2":"{{post[8]}}"
+
 
         }
        
