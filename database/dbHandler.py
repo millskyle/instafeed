@@ -38,7 +38,9 @@ def getPics(count=10):
           row.user_username,
           row.user_profile_picture,
           row.likes,
-          row.caption_text
+          row.caption_text,
+          row.colour1,
+          row.colour2
           ]
       )
    return data
@@ -90,6 +92,8 @@ def updatePic(pic):
    row.user_profile_picture = pic.picture.user.profile_picture
    row.user_username = pic.picture.user.username
 
+   row.colour1 = "#93AABF"
+   row.colour2 = "#85A4BF"
 
    row.hide = 0
 

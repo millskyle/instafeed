@@ -56,6 +56,9 @@ class images(BaseModel):
    user_profile_picture = pw.CharField()
    user_username = pw.CharField()
 
+   colour1 = pw.CharField()
+   colour2 = pw.CharField()
+
    hide = pw.IntegerField()
 
 
